@@ -17,3 +17,15 @@ def create_student(student:dict): #create new student record
         "message": "student was successfully added",
         "name": student
     }
+
+#Adds a course to a list of courses
+courses = [{"name": "Calculus", "credit": 3, "course_code": 400},] # list of courses
+
+@app.post("/courses")
+def create_courses(course:dict):
+    courses.append(course)
+    latest_course = courses[-1]
+
+    return {
+        "message": f"you have successfully added {latest_course["name"]}"
+    }
