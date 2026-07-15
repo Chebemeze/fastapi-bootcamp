@@ -2,21 +2,18 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
-@app.get("/")
-def home():
-    return {
-        "message": "Welcome to BuildFlow AI"
-    }
+students = [{"id": 1, "name": "Chebem"},
+            {"id": 2, "name": "Ada"},
+            ]
 
-@app.get("/about")
-def about():
-    return {
-        "Developer": "Eze Chebem",
-        "role": "Mechanical Engineer turned AI Full stack Developer"
-    }
+@app.get("/students") #GET api
+def get_students(): #it gets student record
+    return students
 
-@app.get("/age")
-def age():
+@app.post("/students") #POST api
+def create_student(student:dict): #create new student record
+    students.append(student)
     return {
-        "age": 10
+        "message": "student was successfully added",
+        "name": student
     }
