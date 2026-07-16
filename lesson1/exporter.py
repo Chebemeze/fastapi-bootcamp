@@ -1,4 +1,6 @@
 def export_books(library: dict, filename: str = "library_export.csv"):
+    if library is None:
+        return
     try:
         with open(filename, "r"):
             pass
