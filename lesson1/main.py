@@ -24,8 +24,7 @@ courses = [{"name": "Calculus", "credit": 3, "course_code": 400},] # list of cou
 @app.post("/courses")
 def create_courses(course:dict):
     courses.append(course)
-    latest_course = courses[-1] #gets last course appended to the courses list
 
     return {
-        "message": f"you have successfully added {latest_course["name"]}"
+        "message": f"you have successfully added {course['name']}"
     }
