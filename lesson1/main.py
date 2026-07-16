@@ -15,7 +15,7 @@ def create_student(student:dict): #create new student record
     students.append(student)
     return {
         "message": "student was successfully added",
-        "name": student
+        "student": student
     }
 
 #Adds a course to a list of courses
@@ -27,7 +27,7 @@ def create_courses(course:dict):
 
     return {
         "message": f"you have successfully added {course['name']}",
-        "courses": course
+        "course": course
     }
 
 @app.get("/courses")
