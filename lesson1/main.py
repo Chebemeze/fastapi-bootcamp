@@ -31,7 +31,7 @@ def create_courses(course:dict):
     }
 
 @app.get("/courses")
-def create_courses():
+def get_courses():
     return {
-        "courses": courses,
+        courses
     }
