@@ -29,3 +29,9 @@ def create_courses(course:dict):
         "message": f"you have successfully added {course['name']}",
         "courses": course
     }
+
+@app.get("/courses")
+def create_courses():
+    return {
+        "courses": courses,
+    }
