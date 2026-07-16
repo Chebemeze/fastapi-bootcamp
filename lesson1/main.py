@@ -27,5 +27,5 @@ def create_courses(course:dict):
 
     return {
         "message": f"you have successfully added {course['name']}",
-        "courses": courses
+        "courses": course
     }
