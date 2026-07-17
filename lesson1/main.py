@@ -12,9 +12,15 @@ class Student(BaseModel):
     id: int
     name: str
 
-@app.get("/students") #GET api
-def get_students(): #it gets student record
-    return students
+@app.get("/students/{student_id}") #GET api
+def get_students(student_id): #it gets student record
+    for student in students:
+        if student["id"] == student_id:
+            return student
+    
+    return {
+        "message": "Non found, kindly enter a valid student ID"
+    }
 
 @app.post("/students") #POST api
 def create_student(student:Student): #create new student record
