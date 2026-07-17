@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from pydantic import BaseModel
 
 app = FastAPI()
 
@@ -6,32 +7,40 @@ students = [{"id": 1, "name": "Chebem"},
             {"id": 2, "name": "Ada"},
             ]
 
+#Student class utilizing pydantic base model
+class Student(BaseModel):
+    id: int
+    name: str
+
 @app.get("/students") #GET api
 def get_students(): #it gets student record
     return students
 
 @app.post("/students") #POST api
-def create_student(student:dict): #create new student record
+def create_student(student:Student): #create new student record
     students.append(student)
     return {
-        "message": "student was successfully added",
+        "message": f"{student.name} was successfully added",
         "student": student
     }
 
 #Adds a course to a list of courses
 courses = [{"name": "Calculus", "credit": 3, "course_code": 400},] # list of courses
 
-@app.post("/courses")
-def create_courses(course:dict):
-    courses.append(course)
-
-    return {
-        "message": f"you have successfully added {course['name']}",
-        "course": course
-    }
+#course class utilizing pydantic base model
+class Course(BaseModel):
+    name: str
+    credit: int
+    course_code: int
 
 @app.get("/courses")
 def get_courses():
+    return courses
+
+@app.post("/courses")
+def create_courses(course:Course):
+    courses.append(course)
     return {
-        courses
+        "message": f"you have successfully added {course.name}",
+        "course": course
     }
