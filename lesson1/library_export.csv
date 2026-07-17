@@ -1,4 +1,4 @@
-title,author,year,genre,status,rating
-The great gatsby,f. scott fitzgerald,1925,fiction,read,5
-Purple Hibiscus,Chimamanda Ngozi Adichie,2003,fiction,No,4
-Understanding Purpose in Times of Perplexity: Seasons of Change,Myles Munroe,1998,Christian and personal growth,No,8
+title,author,year,genre,read,rating
+The great gatsby,f. scott fitzgerald,1925,fiction,False,5
+Purple Hibiscus,Chimamanda Ngozi Adichie,2003,fiction,True,4
+Understanding Purpose in Times of Perplexity: Seasons of Change,Myles Munroe,1998,Christian and personal growth,True,8
