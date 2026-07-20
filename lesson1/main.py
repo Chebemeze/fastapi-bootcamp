@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
 app = FastAPI()
@@ -13,14 +13,13 @@ class Student(BaseModel):
     name: str
 
 @app.get("/students/{student_id}") #GET api
-def get_students(student_id): #it gets student record
+def get_students(student_id: int): #it gets student record
     for student in students:
         if student["id"] == student_id:
             return student
-    
-    return {
-        "message": "Non found, kindly enter a valid student ID"
-    }
+        raise HTTPException(status_code = 404,
+            detail = "Student not found" 
+        )
 
 @app.post("/students") #POST api
 def create_student(student:Student): #create new student record
@@ -39,9 +38,15 @@ class Course(BaseModel):
     credit: int
     course_code: int
 
-@app.get("/courses")
-def get_courses():
-    return courses
+@app.get("/courses/{course_code}")
+def get_courses(course_code: int):
+    for course in courses:
+        if course["course_code"] == course_code:
+            return course
+        raise HTTPException(
+            status_code = 404,
+            detail = "course not found"
+            )
 
 @app.post("/courses")
 def create_courses(course:Course):
