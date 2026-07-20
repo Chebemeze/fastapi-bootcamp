@@ -17,9 +17,10 @@ def get_students(student_id: int): #it gets student record
     for student in students:
         if student["id"] == student_id:
             return student
-        raise HTTPException(status_code = 404,
-            detail = "Student not found" 
-        )
+
+    raise HTTPException(status_code = 404,
+        detail = "Student not found" 
+    )
 
 @app.post("/students") #POST api
 def create_student(student:Student): #create new student record
@@ -43,10 +44,10 @@ def get_courses(course_code: int):
     for course in courses:
         if course["course_code"] == course_code:
             return course
-        raise HTTPException(
-            status_code = 404,
-            detail = "course not found"
-            )
+    raise HTTPException(
+        status_code = 404,
+        detail = "course not found"
+    )
 
 @app.post("/courses")
 def create_courses(course:Course):
