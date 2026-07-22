@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+from typing import Optional
 
 app = FastAPI()
 
@@ -9,12 +10,20 @@ students = [{"id": 1, "name": "Chebem","age": 20, "state": "Enugu"},
             {"id": 4, "name": "Chebem", "age": 20, "state": "Abia"}
             ]
 
-
-@app.get("/search")
-def get_student(name: str, age: int):
+@app.get("/students")
+def get_student(name: Optional[str] = None, age: Optional[int] = None):
     student_list = []
     for student in students:
-        if student["name"].lower() == name.lower() and student["age"] == age:
+        if name and age:
+            if student["name"].lower() == name.lower() and student["age"] == age:
+                student_list.append(student)            
+        elif name:
+            if student["name"].lower() == name.lower():
+                student_list.append(student)
+        elif age:
+            if student["age"] == age:
+                student_list.append(student)
+        else:
             student_list.append(student)
 
     if student_list:
@@ -31,9 +40,58 @@ class Student(BaseModel):
     age: int
     state: str
 
-@app.post("/search")
+@app.post("/students")
 def create_student(student: Student):
     students.append(student)
     return {
         "message": f"You've successfully added {student.name}"
     }
+
+@app.put("/students/{student_id}")
+def replace_student(student_id: int, updated_student: Student):
+    for index, student in enumerate(students):
+        if student["id"] == student_id:
+            students[index] = updated_student.model_dump() #model_dump() converts a python object to dictionary
+            return {
+                "message": f"Successfully updated {students[index]['name']}",
+                "detail": students[index]
+            }
+    raise HTTPException(status_code= 404, detail="Student not Found")
+
+class StudentUpdate(BaseModel):
+    name: Optional[str]= None
+    age: Optional[int]= None
+    state: Optional[str]= None
+
+@app.patch("/students/{student_id}")
+def patch_student(student_id:int, updates: StudentUpdate):
+
+    if updates.name is not None and updates.age is not None and updates.state is not None:
+        return replace_student(student_id, Student(id=student_id, name=updates.name, age=updates.age, state=updates.state))
+    # for student in students:
+    #     if student["id"] == student_id:
+    #         if updates.name is not None:
+    #             student["name"] = updates.name
+    #         if updates.age is not None:
+    #             student["age"] = updates.age
+    #         if updates.state is not None:
+    #             student["state"] = updates.state
+    #         return {
+    #             "message": "Student successfully updated",
+    #             "Student": student
+    #         }
+    update_data = updates.model_dump(exclude_unset= True) #exclude_unset= True only forms a dictionary of only the data passed by the user
+
+    #dealing with a case where an empty list is passed in request body
+    if not update_data:
+        raise HTTPException(status_code=404, detail="At least one field must be provided for update")
+
+    for student in students:
+        if student["id"] == student_id:
+            for key, value in update_data.items():
+                student[key] = value
+            return {
+                "message": "Student successfully updated",
+                "Student": student
+            }
+    raise HTTPException(status_code=404, detail="Student not Found")
