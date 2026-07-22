@@ -65,7 +65,6 @@ class StudentUpdate(BaseModel):
 
 @app.patch("/students/{student_id}")
 def patch_student(student_id:int, updates: StudentUpdate):
-
     update_data = updates.model_dump(exclude_unset= True) #exclude_unset= True only forms a dictionary of only the data passed by the user
 
     #dealing with a case where an empty list is passed in request body
