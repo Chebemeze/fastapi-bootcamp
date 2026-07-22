@@ -66,20 +66,6 @@ class StudentUpdate(BaseModel):
 @app.patch("/students/{student_id}")
 def patch_student(student_id:int, updates: StudentUpdate):
 
-    if updates.name is not None and updates.age is not None and updates.state is not None:
-        return replace_student(student_id, Student(id=student_id, name=updates.name, age=updates.age, state=updates.state))
-    # for student in students:
-    #     if student["id"] == student_id:
-    #         if updates.name is not None:
-    #             student["name"] = updates.name
-    #         if updates.age is not None:
-    #             student["age"] = updates.age
-    #         if updates.state is not None:
-    #             student["state"] = updates.state
-    #         return {
-    #             "message": "Student successfully updated",
-    #             "Student": student
-    #         }
     update_data = updates.model_dump(exclude_unset= True) #exclude_unset= True only forms a dictionary of only the data passed by the user
 
     #dealing with a case where an empty list is passed in request body
