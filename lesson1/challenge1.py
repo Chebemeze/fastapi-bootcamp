@@ -1,8 +1,15 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import Optional
+from .models import Student, StudentUpdate
+from .database import create_db_and_tables
 
 app = FastAPI()
+
+@app.on_event("startup")
+def on_startup():
+    create_db_and_tables() #creates tables in the database if it doesn't already exist
+# done before any request is made
 
 students = [{"id": 1, "name": "Chebem","age": 20, "state": "Enugu"},
             {"id": 2, "name": "Ada", "age": 30, "state": "Imo"},
@@ -34,11 +41,11 @@ def get_student(name: Optional[str] = None, age: Optional[int] = None):
 
     raise HTTPException(status_code=404, detail= "Student not Found")
 
-class Student(BaseModel):
-    id: int
-    name: str
-    age: int
-    state: str
+# class Student(BaseModel):
+#     id: int
+#     name: str
+#     age: int
+#     state: str
 
 @app.post("/students")
 def create_student(student: Student):
@@ -58,10 +65,10 @@ def replace_student(student_id: int, updated_student: Student):
             }
     raise HTTPException(status_code= 404, detail="Student not Found")
 
-class StudentUpdate(BaseModel):
-    name: Optional[str]= None
-    age: Optional[int]= None
-    state: Optional[str]= None
+# class StudentUpdate(BaseModel):
+#     name: Optional[str]= None
+#     age: Optional[int]= None
+#     state: Optional[str]= None
 
 @app.patch("/students/{student_id}")
 def patch_student(student_id:int, updates: StudentUpdate):
