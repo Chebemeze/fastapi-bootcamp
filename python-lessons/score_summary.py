@@ -7,7 +7,7 @@ def score_summary(name, a, b, c):
         return "Invalid score"
     
     scores = [score_a, score_b, score_c]
-    score_bool = [True for x in scores if 0>x>100]
+    score_bool = [True for x in scores if x < 0 or x > 100]
     for val in list(score_bool):
         if val == True:
             return "Invalid score"
