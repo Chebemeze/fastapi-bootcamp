@@ -21,5 +21,6 @@ def password_strength(password):
         if is_alpha and is_digit:
             return "Strong"
 
+#test case to test the function
 status = [password_strength("abc12"), password_strength("abcdefgh"), password_strength("abc12345")]
 print(status)
