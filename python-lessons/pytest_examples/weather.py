@@ -8,7 +8,7 @@ Example:
     owere
 """
 
-def get_weather(city: str):
+def get_weather(city):
     """
     Args:
         str: name of a geographic location to get the intended weather condition from
@@ -35,7 +35,7 @@ def get_weather(city: str):
         raise ConnectionError("Weather API Failed")
     data = response.json()
     return {
-        "city": data["city"],
+        "city": city,
         "temperature": data["temperature"],
         "condition": data["condition"]
     }
