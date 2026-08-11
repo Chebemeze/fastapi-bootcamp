@@ -18,7 +18,7 @@ def test_weather():
         mock_response.status_code = 200
         mock_response.json.return_value = {"temperature": 31, "condition": "Sunny"}
         mock_get.return_value = mock_response
-    
+
         result = get_weather("Lagos")
 
         assert result == {
@@ -26,3 +26,5 @@ def test_weather():
             "temperature": 31,
             "condition": "Sunny"
         }
+
+        mock_get.assert_called_once_with("https://api.weather.com/Lagos")
