@@ -1,0 +1,118 @@
+{
+    "_support": {
+        "message": "Support this API with a tip",
+        "url": "https://ko-fi.com/polluxlabs"
+    },
+    "satellite": "ISS (ZARYA)",
+    "tle_epoch": "2026-08-13T20:35:52Z",
+    "tle_age_hours": 14.0,
+    "observer": {
+        "lat": 4.8242,
+        "lon": 7.0336,
+        "elevation_m": 0.0
+    },
+    "generated_at": "2026-08-14T10:33:02Z",
+    "params": {
+        "min_elevation_deg": 10.0,
+        "visible_only": false,
+        "sun_alt_max_deg": -6.0,
+        "days_ahead": 10
+    },
+    "passes": [
+        {
+            "rise": {
+                "time": "2026-08-14T14:18:41Z",
+                "azimuth_deg": 330.0,
+                "compass": "NNW"
+            },
+            "culmination": {
+                "time": "2026-08-14T14:22:02Z",
+                "elevation_deg": 70.3
+            },
+            "set": {
+                "time": "2026-08-14T14:25:23Z",
+                "azimuth_deg": 138.7,
+                "compass": "SE"
+            },
+            "duration_sec": 402,
+            "above_horizon": true,
+            "visible": false
+        },
+        {
+            "rise": {
+                "time": "2026-08-15T01:58:05Z",
+                "azimuth_deg": 167.4,
+                "compass": "SSE"
+            },
+            "culmination": {
+                "time": "2026-08-15T02:00:19Z",
+                "elevation_deg": 16.7
+            },
+            "set": {
+                "time": "2026-08-15T02:02:32Z",
+                "azimuth_deg": 82.9,
+                "compass": "E"
+            },
+            "duration_sec": 267,
+            "above_horizon": true,
+            "visible": false
+        },
+        {
+            "rise": {
+                "time": "2026-08-15T03:34:52Z",
+                "azimuth_deg": 269.4,
+                "compass": "W"
+            },
+            "culmination": {
+                "time": "2026-08-15T03:36:54Z",
+                "elevation_deg": 15.1
+            },
+            "set": {
+                "time": "2026-08-15T03:38:55Z",
+                "azimuth_deg": 345.0,
+                "compass": "NNW"
+            },
+            "duration_sec": 243,
+            "above_horizon": true,
+            "visible": false
+        },
+        {
+            "rise": {
+                "time": "2026-08-15T13:31:17Z",
+                "azimuth_deg": 352.2,
+                "compass": "N"
+            },
+            "culmination": {
+                "time": "2026-08-15T13:34:13Z",
+                "elevation_deg": 28.0
+            },
+            "set": {
+                "time": "2026-08-15T13:37:10Z",
+                "azimuth_deg": 115.0,
+                "compass": "ESE"
+            },
+            "duration_sec": 353,
+            "above_horizon": true,
+            "visible": false
+        },
+        {
+            "rise": {
+                "time": "2026-08-16T02:46:01Z",
+                "azimuth_deg": 240.0,
+                "compass": "WSW"
+            },
+            "culmination": {
+                "time": "2026-08-16T02:49:03Z",
+                "elevation_deg": 32.9
+            },
+            "set": {
+                "time": "2026-08-16T02:52:05Z",
+                "azimuth_deg": 12.5,
+                "compass": "NNE"
+            },
+            "duration_sec": 364,
+            "above_horizon": true,
+            "visible": false
+        }
+    ]
+}
